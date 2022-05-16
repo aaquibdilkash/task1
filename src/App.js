@@ -29,7 +29,7 @@ function App() {
       setLoading(true)
       web3Handler()
     })
-    // Get provider from Metamask
+    // Get provider from Metamask ;
     const provider = new ethers.providers.Web3Provider(window.ethereum)
     // Get signer
     const signer = provider.getSigner()
