@@ -11,6 +11,7 @@ import './App.css';
 
 function App() {
   const [loading, setLoading] = useState(true)
+  const [loadingMessage, setLoadingMessage] = useState('Please Click on "Connect Wallet" Button to Connect to Metamask!')
   const [account, setAccount] = useState(null)
   const [contract, setContract] = useState({})
   const [amount, setAmount] = useState(0)
@@ -48,10 +49,14 @@ function App() {
     console.log(balance.toString())
     try {
       const tx = await contract.transfer(address, ethers.utils.parseEther(amount))
+      setLoading(true)
+      setLoadingMessage("Loading!")
       await tx.wait()
+      setLoading(false)
       alert("Transfer Success!")
     } catch(e) {
       alert("Error: Your Balance must be greater than the sending amount!")
+      console.log(e)
     }
 
   }
@@ -62,20 +67,18 @@ function App() {
         <>
           <Navbar expand="lg" bg="secondary" variant="dark">
             <Container>
-              <Navbar.Brand href="http://www.dappuniversity.com/bootcamp">
+              <Navbar.Brand href="">
                 <img src={logo} width="40" height="40" className="" alt="" />
                 &nbsp; React App
               </Navbar.Brand>
               <Navbar.Toggle aria-controls="responsive-navbar-nav" />
               <Navbar.Collapse id="responsive-navbar-nav">
                 <Nav className="me-auto">
-                  {/* <Nav.Link as={Link} to="/">Home</Nav.Link> */}
-                  {/* <Nav.Link as={Link} to="/profile">Profile</Nav.Link> */}
                 </Nav>
                 <Nav>
                   {account ? (
                     <Nav.Link
-                      href={`https://etherscan.io/address/${account}`}
+                      href={`https://testnet.bscscan.com/address/${account}`}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="button nav-button btn-sm mx-4">
@@ -96,7 +99,7 @@ function App() {
           {loading ? (
             <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '80vh' }}>
               <Spinner animation="border" style={{ display: 'flex' }} />
-              <p className='mx-3 my-0'>Awaiting Metamask Connection...</p>
+              <p className='mx-3 my-0'>{loadingMessage}</p>
             </div>
           ) : (
             <div className="container-fluid mt-5">
