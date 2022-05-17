@@ -42,7 +42,7 @@ function App() {
         },
         chainId: 97,
         network: "binance-testnet",
-        // infuraId: "ba2878fc58f746b987d139af2c6ffeb9",
+        infuraId: "ba2878fc58f746b987d139af2c6ffeb9",
       },
     },
     walletlink: {
@@ -61,7 +61,7 @@ function App() {
   const web3Modal = new Web3Modal({
     network: "kovan",
     theme: "dark",
-    // cacheProvider: true,
+    cacheProvider: true,
     providerOptions,
   });
 
