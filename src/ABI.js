@@ -15,9 +15,9 @@ const ABI = () => {
     let endPoint;
 
     if (chain == "Ethereum") {
-      endPoint = `http://api.etherscan.io/api?module=contract&action=getabi&address=${address}`;
+      endPoint = `https://api.etherscan.io/api?module=contract&action=getabi&address=${address}`;
     } else if (chain == "BSC") {
-      endPoint = `http://api.bscscan.com/api?module=contract&action=getabi&address=${address}&apikey=${BSC_API_KEY}`;
+      endPoint = `https://api.bscscan.com/api?module=contract&action=getabi&address=${address}&apikey=${BSC_API_KEY}`;
     } else if (chain == "BSC Testnet") {
       endPoint = `https://api-testnet.bscscan.com/api?module=contract&action=getabi&address=${address}`;
     } else if (chain == "Ropsten") {
